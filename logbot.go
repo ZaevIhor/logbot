@@ -51,8 +51,8 @@ func handleConviction(w http.ResponseWriter, r *http.Request) {
 }
 
 func sendTelegramMessage(msg string) error {
-	botToken := "1710062337:AAFvv3VetLCS7mP073X1Ej41hr_XhH8Nvik"
-	chatID := "153318637"
+	botToken := os.Getenv("TELEGRAM_BOT_TOKEN")
+	chatID := os.Getenv("TELEGRAM_CHAT_ID")
 
 	telegramURL := fmt.Sprintf("https://api.telegram.org/bot%s/sendMessage", botToken)
 

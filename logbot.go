@@ -51,11 +51,13 @@ func handleConviction(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte(`{"status":"logged"}`))
 }
 
+var telegramAPIBase = "https://api.telegram.org"
+
 func sendTelegramMessage(msg string) error {
 	botToken := os.Getenv("TELEGRAM_BOT_TOKEN")
 	chatID := os.Getenv("TELEGRAM_CHAT_ID")
 
-	telegramURL := fmt.Sprintf("https://api.telegram.org/bot%s/sendMessage", botToken)
+	telegramURL := fmt.Sprintf("%s/bot%s/sendMessage", telegramAPIBase, botToken)
 
 	payload := TelegramMessage{
 		ChatID: chatID,
